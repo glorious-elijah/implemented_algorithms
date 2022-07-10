@@ -1,2 +1,3 @@
 .directory
-__pycasche__/
+__pycasche__/*
+.pytest_cache/*
