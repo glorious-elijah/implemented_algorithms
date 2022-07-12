@@ -1,3 +1,5 @@
+import linked_list
+
 def merge_sort(data, rev = False):
     '''
         Takes an unsorted data argument and returns a new sorted list. Returns list in ascending order if rev is False and vice versa
@@ -66,6 +68,3 @@ def merge(arg1, arg2, rev):
             new_list.append(arg2[j])
             j += 1
         return new_list
-
-d = merge_sort([45,22,243,234,3,4,23,4,36,234,2,45,32,3,32,324,2,564,4,354,3,23], False)
-print(d) 

@@ -1,4 +1,4 @@
-const mergeSort = (list = [], rev = false) => {
+const mergeSort = (list, rev = false) => {
   if (list.length <= 1) {
     return list;
   }
@@ -65,3 +65,13 @@ const sort = (arg1, arg2, rev) => {
     return newList;
   }
 };
+
+d = mergeSort(
+  [
+    45, 22, 243, 234, 3, 4, 23, 4, 36, 234, 2, 45, 32, 3, 32, 324, 2, 564, 4,
+    354, 3, 23,
+  ],
+  true
+);
+
+console.log(d);

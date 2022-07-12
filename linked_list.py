@@ -1,4 +1,4 @@
-class Node:
+class node:
     '''
         An object for storing a single node in a singly linked list module
         Contains two attributes the data being stored at the node and a reference to the next node
@@ -10,7 +10,7 @@ class Node:
         self.data = data
     
     def __repr__(self):
-        return '<Node data %s>' %self.data
+        return '<Node %s>' %self.data
 
 
 class linked_list:
@@ -21,6 +21,7 @@ class linked_list:
     def __init__(self):
         self.head = None
         # self.tail = None
+
     
     def __repr__(self):
         node = []
@@ -57,7 +58,7 @@ class linked_list:
             Insert data to the head of the linked list
         '''
 
-        new_node = Node(data)
+        new_node = node(data)
         new_node.next_node = self.head
         self.head = new_node
 
@@ -102,7 +103,7 @@ class linked_list:
                     index -= 1
                 
                 #creates a new node with data(argument from insert function) called new_node
-                new_node = Node(data)
+                new_node = node(data)
                 #temporary storage of the next_node from our current node
                 temp_node = current.next_node
                 #assigns the temporary node to the next node of our new_node
@@ -143,7 +144,6 @@ class linked_list:
                 return current
         except:
             return 'Invalid Index'
-
 
     def remove(self, key):
         '''
@@ -188,23 +188,3 @@ class linked_list:
         while size >= 0:
             self.remove(key)
             size -= 1                
-        
-    
-
-l = linked_list()
-l.prepend(3)
-l.prepend(32)
-l.prepend(34)
-l.prepend(3)
-l.prepend(3)
-l.prepend(2)
-l.prepend(33)
-l.prepend(3)
-l.prepend(3)
-l.prepend(36)
-l.prepend(13)
-l.prepend(5)
-l.prepend(5)
-l.prepend(5)
-l.prepend(5)
-l.prepend(5)

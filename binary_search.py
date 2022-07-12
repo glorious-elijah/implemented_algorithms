@@ -15,6 +15,3 @@ def binary_search(list, target):
         else:
             last = mid -1
     return -1
-
-def test_search():
-    assert binary_search([x for x in range(1, 11)], 5) == 4
