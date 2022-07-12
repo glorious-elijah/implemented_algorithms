@@ -36,8 +36,6 @@ def divide(data): #functional
 
     return left_half, right_half
 
-# BUG
-# only able to sort the first two elements correctingly
 def sort(arg1, arg2, rev):
     '''
         Sorts arguments supplied in ascending order when the rev(reverse) argument is False and descending order when rev is True
@@ -88,20 +86,3 @@ def sort(arg1, arg2, rev):
             r_current = r_current.next_node
             
         return new_list 
-
-l = linked_list()
-l.prepend(66) 
-l.prepend(63242341)
-l.prepend(62345)
-l.prepend(46)
-l.prepend(62)
-l.prepend(446)
-l.prepend(62)
-l.prepend(464)
-l.prepend(4327)
-l.prepend(66)
-l.insert(12)
-print('unsorted: ', l)
-# print('divide', divide(l))
-print('Sorted descending: ', merge_sort(l, True))
-print('Sorted ascending: ', merge_sort(l))

@@ -1,77 +1,82 @@
+const linkedList = require("./linkedList");
+
 const mergeSort = (list, rev = false) => {
-  if (list.length <= 1) {
-    return list;
-  }
+	if (list.sizeOf() <= 1) {
+		return list;
+	} else if (list.head === undefined) {
+		return list;
+	}
 
-  let { leftHalf, rightHalf } = divide(list);
-  let left = mergeSort(leftHalf, rev);
-  let right = mergeSort(rightHalf, rev);
+	let { leftHalf, rightHalf } = divide(list);
+	let left = mergeSort(leftHalf, rev);
+	let right = mergeSort(rightHalf, rev);
 
-  return sort(left, right, rev);
+	return sort(left, right, rev);
 };
 
 const divide = (list) => {
-  let mid = Math.floor(list.length / 2);
-  let leftHalf = list.slice(0, mid);
-  let rightHalf = list.slice(mid);
+	let current = list.head;
+	let leftHalf = new linkedList();
+	let rightHalf = new linkedList();
+	let size = list.sizeOf();
 
-  return { leftHalf, rightHalf };
+	for (let i = 0; i < size; i++) {
+		if (i < Math.floor(size / 2)) {
+			leftHalf.append(current.data);
+			current = current.nextNode;
+		} else {
+			rightHalf.append(current.data);
+			current = current.nextNode;
+		}
+	}
+
+	return { leftHalf, rightHalf };
 };
 
 const sort = (arg1, arg2, rev) => {
-  let newList = [];
-  let i = 0;
-  let j = 0;
+	let newlinkedList = new linkedList();
+	left = arg1.head;
+	right = arg2.head;
 
-  if (rev) {
-    while (i < arg1.length && j < arg2.length) {
-      if (arg1[i] > arg2[j]) {
-        newList.push(arg1[i]);
-        i += 1;
-      } else {
-        newList.push(arg2[j]);
-        j += 1;
-      }
-    }
-    while (i < arg1.length) {
-      newList.push(arg1[i]);
-      i += 1;
-    }
-    while (j < arg2.length) {
-      newList.push(arg2[j]);
-      j += 1;
-    }
+	if (rev) {
+		while (left && right) {
+			if (left.data > right.data) {
+				newlinkedList.append(left.data);
+				left = left.nextNode;
+			} else {
+				newlinkedList.append(right.data);
+				right = right.nextNode;
+			}
+		}
+		while (left) {
+			newlinkedList.append(left.data);
+			left = left.nextNode;
+		}
+		while (right) {
+			newlinkedList.append(right.data);
+			right = right.nextNode;
+		}
 
-    return newList;
-  } else {
-    while (i < arg1.length && j < arg2.length) {
-      if (arg1[i] < arg2[j]) {
-        newList.push(arg1[i]);
-        i += 1;
-      } else {
-        newList.push(arg2[j]);
-        j += 1;
-      }
-    }
-    while (i < arg1.length) {
-      newList.push(arg1[i]);
-      i += 1;
-    }
-    while (j < arg2.length) {
-      newList.push(arg2[j]);
-      j += 1;
-    }
+		return newlinkedList;
+	} else {
+		while (left && right) {
+			if (left.data < right.data) {
+				newlinkedList.append(left.data);
+				left = left.nextNode;
+			} else {
+				newlinkedList.append(right.data);
+				right = right.nextNode;
+			}
+		}
+		while (left) {
+			newlinkedList.append(left.data);
+			left = left.nextNode;
+		}
+		while (right) {
+			newlinkedList.append(right.data);
+			right = right.nextNode;
+		}
 
-    return newList;
-  }
+		return newlinkedList;
+	}
 };
-
-d = mergeSort(
-  [
-    45, 22, 243, 234, 3, 4, 23, 4, 36, 234, 2, 45, 32, 3, 32, 324, 2, 564, 4,
-    354, 3, 23,
-  ],
-  true
-);
-
-console.log(d);
