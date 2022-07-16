@@ -11,7 +11,7 @@ def merge_sort(data, rev = False):
 
     if data.size_of() <= 1:
         return data
-    elif data.head is None:
+    if data.head is None:
         return data
     #divide function returns a splitted list
     left_half, right_half = divide(data)
@@ -25,17 +25,9 @@ def divide(data): #functional
     '''
         Takes a list argument and divides it into two different list
     '''
-    size = data.size_of()
-    left_half = LinkedList()
-    right_half = LinkedList()
-    current = data.head
-    for i in range(size):
-        if i < (size // 2):
-            left_half.prepend(current.data)
-            current = current.next_node
-        else:
-            right_half.prepend(current.data)
-            current = current.next_node
+    mid = data.size_of() // 2
+    left_half =  data.slice(0, mid)
+    right_half = data.slice(mid)
 
     return left_half, right_half
 
@@ -87,3 +79,4 @@ def sort(arg1, arg2, rev):
         new_list.append(r_current.data)
         r_current = r_current.next_node
     return new_list
+    

@@ -10,19 +10,17 @@ class linkedList {
 		this.head = undefined;
 	}
 
-	//functional
+	//Utility functions
 	isEmpty() {
 		// returns true if list is empty
 		return this.head == undefined;
 	}
 
-	//functional
 	emptyList() {
 		// Empties the list [just for fun]
 		return (this.head = undefined);
 	}
 
-	//functional
 	sizeOf() {
 		// returns the size of the list
 		let current = this.head;
@@ -35,7 +33,6 @@ class linkedList {
 		return count;
 	}
 
-	//functional
 	has(key) {
 		// function to check if the key exists in the list
 		let current = this.head;
@@ -50,7 +47,50 @@ class linkedList {
 		return false;
 	}
 
-	//functional
+	showAllNodes() {
+		const size = this.sizeOf();
+		let current = this.head;
+		while (current !== undefined) {
+			console.log(current);
+			current = current.nextNode;
+		}
+	}
+
+	atIndex(index) {
+		const size = this.sizeOf();
+		let i = 0;
+		let current = this.head;
+		if (index === size) {
+			return "Invalid Index";
+		}
+
+		while (i < size) {
+			if (i === index) {
+				return current;
+			}
+			current = current.nextNode;
+			i += 1;
+		}
+	}
+
+	slice(start = 0, stop = this.sizeOf()) {
+		const new_list = new linkedList();
+		new_list.append(this.atIndex(start).data);
+		let newStop = stop - 1;
+		let newStart = start + 1;
+
+		if (start < 0 || stop > this.sizeOf()) {
+			return "Invalid Index";
+		}
+
+		while (newStart <= newStop) {
+			new_list.append(this.atIndex(newStart).data);
+			newStart += 1;
+		}
+		return new_list;
+	}
+	// End utility functions
+
 	prepend(data) {
 		// insert data to the beginning of the list
 		let newNode = new Node(data);
@@ -58,7 +98,6 @@ class linkedList {
 		this.head = newNode;
 	}
 
-	//functional
 	append(data) {
 		// insert data to the end of the list
 		return this.insert(data, this.sizeOf());
@@ -90,7 +129,6 @@ class linkedList {
 		}
 	}
 
-	//functional
 	removeIndex(index = 0) {
 		// removes and returns item at the index. when no index is supplied removes the most recent item added
 		let current = this.head;
@@ -119,7 +157,6 @@ class linkedList {
 		}
 	}
 
-	// functional
 	remove(key) {
 		//removes and returns key if found in list
 
@@ -144,7 +181,6 @@ class linkedList {
 		}
 	}
 
-	//functional
 	removeAll(key) {
 		//removes all occurrences of key from list
 
@@ -152,16 +188,6 @@ class linkedList {
 		while (size >= 0) {
 			this.remove(key);
 			size -= 1;
-		}
-	}
-
-	//functional
-	showAllNodes() {
-		const size = this.sizeOf();
-		let current = this.head;
-		for (let i = 0; i < size; i++) {
-			console.log("Index ", i, ": ", current);
-			current = current.nextNode;
 		}
 	}
 }

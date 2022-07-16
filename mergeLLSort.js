@@ -15,68 +15,59 @@ const mergeSort = (list, rev = false) => {
 };
 
 const divide = (list) => {
-	let current = list.head;
-	let leftHalf = new linkedList();
-	let rightHalf = new linkedList();
-	let size = list.sizeOf();
-
-	for (let i = 0; i < size; i++) {
-		if (i < Math.floor(size / 2)) {
-			leftHalf.append(current.data);
-			current = current.nextNode;
-		} else {
-			rightHalf.append(current.data);
-			current = current.nextNode;
-		}
-	}
+	const mid = Math.floor(list.sizeOf() / 2);
+	const leftHalf = list.slice(0, mid);
+	const rightHalf = list.slice(mid);
 
 	return { leftHalf, rightHalf };
 };
 
 const sort = (arg1, arg2, rev) => {
-	let newlinkedList = new linkedList();
+	let newList = new linkedList();
 	left = arg1.head;
 	right = arg2.head;
 
 	if (rev) {
 		while (left && right) {
 			if (left.data > right.data) {
-				newlinkedList.append(left.data);
+				newList.append(left.data);
 				left = left.nextNode;
 			} else {
-				newlinkedList.append(right.data);
+				newList.append(right.data);
 				right = right.nextNode;
 			}
 		}
 		while (left) {
-			newlinkedList.append(left.data);
+			newList.append(left.data);
 			left = left.nextNode;
 		}
 		while (right) {
-			newlinkedList.append(right.data);
+			newList.append(right.data);
 			right = right.nextNode;
 		}
 
-		return newlinkedList;
+		return newList;
 	} else {
 		while (left && right) {
 			if (left.data < right.data) {
-				newlinkedList.append(left.data);
+				newList.append(left.data);
 				left = left.nextNode;
 			} else {
-				newlinkedList.append(right.data);
+				newList.append(right.data);
 				right = right.nextNode;
 			}
 		}
 		while (left) {
-			newlinkedList.append(left.data);
+			newList.append(left.data);
 			left = left.nextNode;
 		}
 		while (right) {
-			newlinkedList.append(right.data);
+			newList.append(right.data);
 			right = right.nextNode;
 		}
 
-		return newlinkedList;
+		return newList;
 	}
 };
+
+module.exports = mergeSort;

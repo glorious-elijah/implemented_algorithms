@@ -11,8 +11,10 @@ class Node:
     next_node = None
     def __init__(self,data):
         self.data = data
+
     def __repr__(self):
         return f'<Node {self.data}>'
+
     def typeof(self):
         '''
         Returns type of data being stored
@@ -27,6 +29,7 @@ class LinkedList:
 
     def __init__(self):
         self.head = None
+
     def __repr__(self):
         node = []
         current = self.head
@@ -73,6 +76,48 @@ class LinkedList:
                 return True
             current = current.next_node
         return False
+
+    def at_index(self, index):
+        '''
+        Returns the node at an index
+        '''
+        current = self.head
+        i = 0
+
+        if index >= self.size_of():
+            return 'Invalid Index'
+        while current:
+            if i == index:
+                return current
+            i += 1
+            current = current.next_node
+
+    def slice(self, start = 0, stop = -1):
+        '''
+        Returns a new linked list with the sliced nodes
+        Slice returns n-1 nodes in the range given
+        '''
+        new_list = LinkedList()
+        new_list.append(self.at_index(start).data)
+        new_start = start + 1
+
+        if start < 0 or stop > self.size_of():
+            return 'Invalid Index'
+
+        if stop == -1:
+            new_stop = self.size_of() - 1
+            while new_start <= new_stop:
+                new_list.append(self.at_index(new_start).data)
+                new_start += 1
+        else:
+            new_stop = stop - 1
+            while new_start <= new_stop:
+                new_list.append(self.at_index(new_start).data)
+                new_start += 1
+
+        return new_list
+
+
     #end utility-functions
 
     def insert(self, data, index = 0):
