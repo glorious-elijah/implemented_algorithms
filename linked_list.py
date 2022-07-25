@@ -7,10 +7,9 @@ class Node:
         An object for storing a single node in a singly linked list module
         Contains two attributes the data being stored at the node and a reference to the next node
     '''
-    data = None
-    next_node = None
     def __init__(self,data):
         self.data = data
+        self.next_node = None
 
     def __repr__(self):
         return f'<Node {self.data}>'
