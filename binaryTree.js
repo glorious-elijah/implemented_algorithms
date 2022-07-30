@@ -12,6 +12,34 @@ class BinaryTree {
 	}
 
 	insert(data) {
+		let stack = [];
+		let current = this.root;
+		stack.push(current);
+
+		if (current === null && current === this.root) {
+			this.root = new Node(data);
+			return;
+		}
+
+		while (stack.length > 0) {
+			current = stack[0];
+			stack.shift();
+
+			if (!current.left) {
+				current.left = new Node(data);
+				return;
+			}
+			stack.push(current.left);
+
+			if (!current.right) {
+				current.right = new Node(data);
+				return;
+			}
+			stack.push(current.right);
+		}
+	}
+
+	randomInsert(data) {
 		let current = this.root;
 		const DIRECTION = ["left", "right"];
 
@@ -145,15 +173,3 @@ class BinaryTree {
 		return stack.some((value) => value === key);
 	}
 }
-
-let d = new BinaryTree();
-d.insert(1);
-d.insert(2);
-d.insert(3);
-d.insert(4);
-d.insert(5);
-
-console.log(d.search(5));
-
-// d.inorderTraversal();
-// d.preorderTraversal();

@@ -26,6 +26,32 @@ class BinaryTree:
 
     def insert(self,data):
         '''Inserts data into the closest available node'''
+        stack = []
+        current = self.root
+        stack.append(current)
+
+        if not current and current is self.root:
+            self.root = Node(data)
+            return
+
+        while len(stack) > 0:
+            current = stack[0]
+            stack.pop(0)
+
+            if not current.left:
+                current.left = Node(data)
+                return
+
+            stack.append(current.left)
+
+            if not current.right:
+                current.right = Node(data)
+                return
+
+            stack.append(current.right)
+
+    def random_insert(self,data):
+        '''Inserts data into the closest random available node'''
         current = self.root
         direction = ['left','right']
 
@@ -112,7 +138,7 @@ class BinaryTree:
     #                 current = current.right
 
     def inorder(self, root, stack = []): #inorder with recurssion
-        '''Inorder traversal of a tree'''
+        '''Inorder traversal of a tree''' # the stack argument helps keep record of nodes traverserved
         if root:
             self.inorder(root.left, stack)
             stack.append(root.data)
@@ -144,16 +170,3 @@ class BinaryTree:
                 return True
 
         return False
-
-
-c = BinaryTree()
-c.insert(1)
-c.insert(2)
-c.insert(3)
-c.insert(4)
-c.insert(5)
-c.insert(6)
-c.insert(7)
-print(c.search(7))
-# d = c.inorder(c.root)
-# print(d)
